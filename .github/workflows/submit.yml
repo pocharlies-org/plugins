@@ -18,7 +18,8 @@ concurrency:
 
 jobs:
   submit:
-    if: github.event_name != 'issues' || (github.event.issue.state == 'open' && contains(github.event.issue.labels.*.name, 'submission'))
+    # INFRA-1218: job del upstream getpaseo/plugins; queda skipped en el fork
+    if: github.repository == 'getpaseo/plugins' && (github.event_name != 'issues' || (github.event.issue.state == 'open' && contains(github.event.issue.labels.*.name, 'submission')))
     runs-on: ubuntu-latest
     permissions:
       contents: write

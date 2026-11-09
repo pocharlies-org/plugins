@@ -24,6 +24,8 @@ concurrency:
 
 jobs:
   build:
+    # INFRA-1218: job del upstream getpaseo/plugins; queda skipped en el fork
+    if: github.repository == 'getpaseo/plugins'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +37,8 @@ jobs:
         with:
           path: dist
   deploy:
+    # INFRA-1218: job del upstream getpaseo/plugins; queda skipped en el fork
+    if: github.repository == 'getpaseo/plugins'
     needs: build
     runs-on: ubuntu-latest
     environment:
